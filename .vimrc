@@ -24,6 +24,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'kien/ctrlp.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-easytags'
 Plugin 'petRUShka/vim-opencl'
 Plugin 'kshenoy/vim-signature'
 Plugin 'Valloric/YouCompleteMe'
@@ -31,6 +32,12 @@ Plugin 'jpo/vim-railscasts-theme'
 Plugin 'tomasr/molokai'
 Plugin 'fmoralesc/molokayo'
 Plugin 'wting/rust.vim'
+Plugin 'Townk/vim-autoclose'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-surround'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 
@@ -67,6 +74,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%121v',100)
 
+" Allow better pasting
+:set pastetoggle=<F4>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -288,3 +297,10 @@ noremap <F5> :GundoToggle<CR>
 
 " => YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/c/ycm/.ycm_extra_conf.py'
+
+" => tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" => CtrlP
+noremap <leader> :CtrlPTag<cr>
+
