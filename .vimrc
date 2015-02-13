@@ -27,7 +27,6 @@ Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-easytags'
 Plugin 'petRUShka/vim-opencl'
 Plugin 'kshenoy/vim-signature'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'tomasr/molokai'
 Plugin 'fmoralesc/molokayo'
@@ -38,6 +37,17 @@ Plugin 'tpope/vim-surround'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'Shutnik/jshint2.vim'
 Plugin 'mattn/emmet-vim'
+Plugin 'godlygeek/tabular'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'wavded/vim-stylus'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'justinj/vim-react-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 
@@ -295,12 +305,14 @@ nmap        ++ vip++
 " => Gundo
 noremap <F5> :GundoToggle<CR>
 
-" => YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/c/ycm/.ycm_extra_conf.py'
-
 " => tagbar
 nmap <F8> :TagbarToggle<CR>
 
 " => CtrlP
 noremap <leader> :CtrlPTag<cr>
 
+" => Tabularize
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+" => Syntastic
+let g:syntastic_always_populate_list = 1
