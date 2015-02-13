@@ -85,7 +85,12 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%121v',100)
 
 " Allow better pasting
-:set pastetoggle=<F4>
+set pastetoggle=<F4>
+
+" Set wrapping
+set tw=119
+set formatoptions+=t
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -124,6 +129,10 @@ set mat=2
 
 " Show line numbers
 set nu
+
+" HTML Setup
+au FileType html setl sw=2 sts=2 et
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -316,3 +325,4 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 " => Syntastic
 let g:syntastic_always_populate_list = 1
+
