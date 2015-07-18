@@ -72,7 +72,7 @@ if has ('gui_running')
 	highlight Pmenu guibg=#cccccc gui=bold
 endif
 
-imap jj <ESC>
+imap jk <ESC>
 
 " Treat all numerals as decimal
 set nrformats=
