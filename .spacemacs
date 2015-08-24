@@ -6,7 +6,7 @@
   "Configuration Layers declaration."
   (setq-default
    ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
+   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
@@ -19,22 +19,22 @@
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
-     c-c++
+     (c-c++ :variables c-c++-enable-clang-support t)
+     clojure
      colors
      emacs-lisp
-     eyebrowse
      games
-     (git :variables git-gutter-use-fringe t)
+     git
      github
      gtags
-     haskell
      ibuffer
      javascript
      latex
      markdown
      org
-     prodigy
      python
+     perspectives
+     restclient
      rust
      search-engine
      shell
@@ -42,15 +42,17 @@
      syntax-checking
      version-control
      vim-powerline
-     xkcd
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
      )
-   ;; List of additional packages that will be installed wihout being
+   ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(
+    key-chord
     latex-preview-pane
-    hackernews
    )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -59,7 +61,8 @@
    ;; the list `dotspacemacs-configuration-layers'
    dotspacemacs-delete-orphan-packages t))
 
-(defun dotspacemacs/init () "Initialization function.
+(defun dotspacemacs/init ()
+  "Initialization function.
 This function is called at the very startup of Spacemacs initialization
 before layers configuration."
   ;; This setq-default sexp is an exhaustive list of all the supported
@@ -86,6 +89,8 @@ before layers configuration."
    dotspacemacs-themes '(monokai
                          solarized-light
                          solarized-dark
+                         spacemacs-light
+                         spacemacs-dark
                          leuven
                          zenburn)
    ;; If non nil the cursor color matches the state color.
@@ -111,6 +116,11 @@ before layers configuration."
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
    dotspacemacs-command-key ":"
+   ;; Location where to auto-save files. Possible values are `original' to
+   ;; auto-save the file in-place, `cache' to auto-save the file to another
+   ;; file stored in the cache directory and `nil' to disable auto-saving.
+   ;; Default value is `cache'.
+   dotspacemacs-auto-save-file-location 'cache
    ;; If non nil then `ido' replaces `helm' for some commands. For now only
    ;; `find-files' (SPC f f) is replaced.
    dotspacemacs-use-ido nil
@@ -119,7 +129,7 @@ before layers configuration."
    dotspacemacs-enable-paste-micro-state nil
    ;; Guide-key delay in seconds. The Guide-key is the popup buffer listing
    ;; the commands bound to the current keystrokes.
-   dotspacemacs-guide-key-delay 0.1
+   dotspacemacs-guide-key-delay 0.4
    ;; If non nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil ;; to boost the loading time.
@@ -164,16 +174,22 @@ before layers configuration."
    dotspacemacs-default-package-repository nil
    )
   ;; User initialization goes here
-  (setq-default evil-escape-key-sequence "jk")
-  (setq-default evil-escape-delay 0.2)
-  (setq doc-view-continuous t)
+  ;; (setq-default evil-escape-key-sequence "jk")
   )
 
 (defun dotspacemacs/config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  (global-linum-mode) ; Show line numbers by default
+  (global-hl-line-mode -1)
+  (global-linum-mode)
+  ;; Make linums relative by default
+  (with-eval-after-load 'linum
+    (linum-relative-toggle))
+  (setq clojure-enable-fancify-symbols t)
+  (require 'key-chord)
+  (key-chord-mode 1)
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
