@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+-*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -22,11 +22,13 @@
      (c-c++ :variables c-c++-enable-clang-support t)
      clojure
      colors
+     django
      emacs-lisp
      games
      git
      github
      gtags
+     html
      ibuffer
      javascript
      latex
@@ -35,9 +37,13 @@
      python
      perspectives
      restclient
+     ruby
+     ruby-on-rails
      rust
      search-engine
      shell
+     ;; '(shell :variables
+     ;;         shell-default-shell 'multi-term)
      spotify
      syntax-checking
      version-control
@@ -51,6 +57,7 @@
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(
+    csv-mode
     key-chord
     latex-preview-pane
    )
@@ -164,7 +171,8 @@ before layers configuration."
    ;; `current' or `nil'. Default is `all'
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil advises quit functions to keep server open when quitting.
-   dotspacemacs-persistent-server nil
+   ;; dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server 1
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
@@ -175,12 +183,15 @@ before layers configuration."
    )
   ;; User initialization goes here
   ;; (setq-default evil-escape-key-sequence "jk")
+  (setq-default js2-basic-offset 2
+                js-indent-level 2)
   )
 
 (defun dotspacemacs/config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (server-start)
   (global-hl-line-mode -1)
   (global-linum-mode)
   ;; Make linums relative by default
