@@ -46,9 +46,10 @@ values."
      latex
      markdown
      org
-     (python :variables python-enable-yapf-format-on-save t)
+     python
      prodigy
      ranger
+     react
      restclient
      ruby
      ruby-on-rails
@@ -61,6 +62,7 @@ values."
      themes-megapack
      vagrant
      version-control
+     yaml
      ;; vim-powerline
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -243,6 +245,17 @@ layers configuration. You are free to put any user code."
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
   (global-company-mode)
+
+  ;; Javascript configuration
+  (setq-default
+   ;; js2-mode
+   js2-basic-offset 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
